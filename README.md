@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextJS-demo
 
-## Getting Started
+This is an example project with a demo how to use React with NextJS
 
-First, run the development server:
+https://nextjs-demo.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Course content
+
+https://teach.opac.me/cours/dev-frontend/nextjs
+
+## Setup
+
+Make sure to install dependencies:
+
+- NodeJS (LTS)
+- [VS Code Vue extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+
+## Project Setup
+
+```sh
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Compile and Hot-Reload for Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Type-Check, Compile and Minify for Production
 
-## Learn More
+```sh
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Run all tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+npm run test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Run specific tests
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```sh
+npm run test:unit
+npm run test:unit:watch
+npm run test:e2e
+npm run test:e2e:ui
+npm run test:types
+npm run lint
+```
