@@ -1,6 +1,5 @@
-import { getPrivateSecret } from "@/lib/actions";
-
 export default async function SecretsRSC() {
+  // Actions can be defined within components with "use client" directive
   async function getPrivateSecret() {
     "use server";
     return process.env.SECRET;

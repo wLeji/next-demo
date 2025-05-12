@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 // The component that fetches and renders the post
-export async function Post({ id }: { id: string }) {
+async function Post({ id }: { id: string }) {
   const post = await getPost(id);
 
   if (!post) {

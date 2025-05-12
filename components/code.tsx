@@ -1,8 +1,9 @@
 import { promises as fs } from "fs";
 import { BundledLanguage, codeToHtml } from "shiki";
+import path from "path";
 
 export async function Code({
-  path,
+  path: filePath,
   lang,
   sub,
 }: {
@@ -14,7 +15,11 @@ export async function Code({
     lang = "tsx";
   }
 
-  const content = await fs.readFile(process.cwd() + path, "utf-8");
+  // Remove leading slash if present to make path relative
+  const relativePath = filePath.startsWith("/") ? filePath.slice(1) : filePath;
+  const absolutePath = path.join(process.cwd(), relativePath);
+
+  const content = await fs.readFile(absolutePath, "utf-8");
   const lines = content.split("\n");
   const subContent = lines.slice(sub?.[0], sub?.[1]).join("\n");
   const out = await codeToHtml(subContent, {
@@ -29,7 +34,7 @@ export async function Code({
         className="p-4 border rounded-md"
       />
       <h4 className="text-sm italic font-light mt-2">
-        {path} {sub ? `(lines ${sub[0] + 1}-${sub[1] + 1})` : ""}
+        {filePath} {sub ? `(lines ${sub[0] + 1}-${sub[1] + 1})` : ""}
       </h4>
     </div>
   );

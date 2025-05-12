@@ -2,7 +2,7 @@
 
 This is an example project with a demo how to use React with NextJS
 
-https://nextjs-demo.vercel.app/
+https://next-demo-lyart-phi.vercel.app
 
 ### Course content
 
@@ -13,7 +13,6 @@ https://teach.opac.me/cours/dev-frontend/nextjs
 Make sure to install dependencies:
 
 - NodeJS (LTS)
-- [VS Code Vue extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
 ## Project Setup
 
@@ -33,19 +32,8 @@ npm run dev
 npm run build
 ```
 
-### Run all tests
+### Run linter
 
 ```sh
-npm run test
-```
-
-### Run specific tests
-
-```sh
-npm run test:unit
-npm run test:unit:watch
-npm run test:e2e
-npm run test:e2e:ui
-npm run test:types
 npm run lint
 ```

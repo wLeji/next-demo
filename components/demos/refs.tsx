@@ -8,7 +8,9 @@ export function Refs() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   function handleClick() {
-    inputRef.current && inputRef.current.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }
 
   return (
