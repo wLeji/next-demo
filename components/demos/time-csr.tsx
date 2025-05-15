@@ -1,7 +1,8 @@
 "use client";
 
-import { getDate } from "@/lib/actions";
 import { useEffect, useState } from "react";
+
+import { getDate } from "@/lib/actions";
 
 export default function Time() {
   const [date, setDate] = useState<Date | null>(null);

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import { getPrivateSecret } from "@/lib/actions";
 
 export default function SecretsCSR() {

@@ -1,6 +1,8 @@
-import { getDate } from "@/lib/actions";
 import { Suspense } from "react";
-import TimeStreamingCSR from "./time-streaming-csr";
+
+import TimeStreamingCSR from "@/components/demos/time-streaming-csr";
+
+import { getDate } from "@/lib/actions";
 
 export default async function Time() {
   const date = getDate();

@@ -7,6 +7,11 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 
+const links = [
+  { href: "/demos", label: "Demos" },
+  { href: "/posts", label: "Posts" },
+];
+
 export default function Header() {
   return (
     <header className="bg-white border-b">
@@ -14,22 +19,21 @@ export default function Header() {
         <Link href="/" className="text-xl font-light">
           NextJS Demo App
         </Link>
+
         <NavigationMenu>
           <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/demos" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Demos
+            {links.map((link) => (
+              <NavigationMenuItem key={link.href}>
+                <NavigationMenuLink
+                  asChild
+                  className={navigationMenuTriggerStyle()}
+                >
+                  <Link href={link.href} passHref>
+                    {link.label}
+                  </Link>
                 </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/posts" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Posts
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
+              </NavigationMenuItem>
+            ))}
           </NavigationMenuList>
         </NavigationMenu>
       </div>

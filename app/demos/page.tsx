@@ -6,7 +6,7 @@ import SecretsCSR from "@/components/demos/secrets-csr";
 import State from "@/components/demos/state";
 
 import { Effects } from "@/components/demos/effects";
-import { Props } from "@/components/demos/props";
+import { PropsComponent } from "@/components/demos/props";
 import { Memo } from "@/components/demos/memo";
 import { Callback } from "@/components/demos/callback";
 import { Refs } from "@/components/demos/refs";
@@ -18,15 +18,15 @@ export default async function Page() {
   return (
     <div className="flex flex-col gap-4">
       <Row>
-        <State />
-        <Code path="/components/demos/state.tsx" />
+        <PropsComponent name="John" age={20} />
+        <div>
+          <Code path="/components/demos/props.tsx" />
+          <Code path="/app/demos/page.tsx" sub={[20, 21]} />
+        </div>
       </Row>
       <Row>
-        <Props name="John" age={20} />
-        <div>
-          <Code path="/app/demos/page.tsx" sub={[24, 25]} />
-          <Code path="/components/demos/props.tsx" />
-        </div>
+        <State />
+        <Code path="/components/demos/state.tsx" />
       </Row>
       <Row>
         <Effects />

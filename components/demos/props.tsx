@@ -1,4 +1,9 @@
-export function Props({ name, age }: { name: string; age: number }) {
+interface Props {
+  name: string;
+  age: number;
+}
+
+export const PropsComponent: React.FC<Props> = ({ name, age }) => {
   return (
     <div>
       <h3>Props</h3>
@@ -6,4 +11,4 @@ export function Props({ name, age }: { name: string; age: number }) {
       <p>Age: {age}</p>
     </div>
   );
-}
+};

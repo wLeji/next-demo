@@ -1,8 +1,25 @@
+import { Suspense } from "react";
+import { Metadata } from "next";
+
 import { Code } from "@/components/code";
 import { Row } from "@/components/row";
+
 import { getPost } from "@/lib/actions";
-import { Metadata } from "next";
-import { Suspense } from "react";
+
+// Surround Post Component with Suspense to show a loading state
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
+  return (
+    <Suspense fallback={<div>Loading post...</div>}>
+      <Post id={id} />
+    </Suspense>
+  );
+}
 
 // The component that fetches and renders the post
 async function Post({ id }: { id: string }) {
@@ -20,23 +37,9 @@ async function Post({ id }: { id: string }) {
       <div>
         <Code path="/app/posts/[id]/page.tsx" />
         <Code path="/lib/actions.ts" sub={[38, 43]} />
+        <Code path="/app/posts/[id]/opengraph-image.tsx" />
       </div>
     </Row>
-  );
-}
-
-// Surround Post Component with Suspense to show a loading state
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
-
-  return (
-    <Suspense fallback={<div>Loading post...</div>}>
-      <Post id={id} />
-    </Suspense>
   );
 }
 

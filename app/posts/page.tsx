@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { createPost, getPosts } from "@/lib/actions";
 import { Label } from "@/components/ui/label";
-import Link from "next/link";
 import { Code } from "@/components/code";
 import { Row } from "@/components/row";
+
+import { createPost, getPosts } from "@/lib/actions";
 
 export default async function Page() {
   const posts = await getPosts();
