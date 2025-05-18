@@ -2,6 +2,8 @@
 
 import { cache } from "react";
 import { revalidatePath } from "next/cache";
+import path from "path";
+import { promises as fs } from "fs";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
@@ -12,7 +14,9 @@ export async function getPrivateSecret() {
 }
 
 export async function getDate() {
-  const data = await fetch(`${API_URL}/api/time`);
+  // no-store here tells next that the response should not be cached and called on every request
+  // Without it, it is fetched once at build time and never again
+  const data = await fetch(`${API_URL}/api/time`, { cache: "no-store" });
   const { time } = await data.json();
   const date = new Date(time);
   await delay(1000);
@@ -40,3 +44,22 @@ export async function getPosts() {
 export const getPost = cache(async (id: string) => {
   return posts.find((post) => post.id === parseInt(id));
 });
+
+export async function getFileContent(filePath: string): Promise<string> {
+  if (process.env.NEXT_PHASE === "phase-production-build") {
+    const relativePath = filePath.startsWith("/")
+      ? filePath.slice(1)
+      : filePath;
+    const absolutePath = path.join(process.cwd(), relativePath);
+    const content = await fs.readFile(absolutePath, "utf-8");
+    return content;
+  }
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/code?filePath=${filePath}`,
+    {
+      cache: "force-cache",
+    }
+  );
+  const { content } = await response.json();
+  return content;
+}
