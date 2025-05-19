@@ -48,7 +48,7 @@ export default async function Page() {
         <TimeRSC />
         <div>
           <Code path="/components/demos/time-rsc.tsx" />
-          <Code path="/lib/actions.ts" sub={[13, 20]} />
+          <Code path="/lib/actions.ts" sub={[15, 24]} />
         </div>
       </Row>
       <Row>
@@ -66,7 +66,7 @@ export default async function Page() {
         <SecretsRSC />
         <div>
           <Code path="/components/demos/secrets-rsc.tsx" />
-          <Code path="/lib/actions.ts" sub={[9, 12]} />
+          <Code path="/lib/actions.ts" sub={[11, 15]} />
         </div>
       </Row>
       <Row>
