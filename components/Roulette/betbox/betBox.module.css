@@ -1,0 +1,78 @@
+.container {
+    border-radius: 10px;
+    text-align: center;
+    min-height: 350px;
+    overflow: hidden;
+  }
+
+.upper {
+  background-color: #1A1E23;
+  border-radius: 10px;
+  height: 150px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border: 2px solid #16181D;
+  padding-bottom: 4px;
+}
+  
+.button {
+  background-color: #ffdddd;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: 100%;
+  height: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px #cc9999; /* Ombre basse pour le relief */
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.2s ease;
+  position: relative;
+}
+
+.button:hover {
+  filter: brightness(1.05);
+}
+
+.button:active {
+  transform: translateY(4px); /* effet de pression */
+}
+
+.red {
+  background-color: #DD4B41;
+  box-shadow: 0 4px 0 #a7332c;
+}
+.red:active {
+  box-shadow: 0 0 0 #a7332c;
+}
+
+.black {
+  background-color: #31353D;
+  box-shadow: 0 4px 0 #1f2227;
+}
+.black:active {
+  box-shadow: 0 0 0 #1f2227;
+}
+
+.green {
+  background-color: #02C74D;
+  box-shadow: 0 4px 0 #01953a;
+}
+.green:active {
+  box-shadow: 0 0 0 #01953a;
+}
+  
+.selected {
+  border: 3px solid gold;
+  transform: scale(1.05);
+}
+
+.bettorList {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  color: #ccc;
+}
+
+  

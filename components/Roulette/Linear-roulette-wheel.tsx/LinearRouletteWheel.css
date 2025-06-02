@@ -1,0 +1,104 @@
+.roulette-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .selector {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .selector select {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  button {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    background-color: #eab308;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .roulette-band-wrapper {
+    position: relative;
+    width: 1000px; /* plus large = 10 cases visibles */
+    height: 100px;
+    overflow: hidden;
+    border: 4px solid #16181d;
+    border-radius: 12px;
+    background-color: #1f2937;
+  }
+  
+  .roulette-marker {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background-color: yellow;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  
+  .roulette-band {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    align-items: center;
+  }
+  
+  .slot {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 2px solid #16181d;
+    flex-shrink: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .red {
+    background-color: #dd4b41;
+  }
+  
+  .black {
+    background-color: #31353d;
+  }
+  
+  .green {
+    background-color: #02c74d;
+  }
+  
+  .result {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  

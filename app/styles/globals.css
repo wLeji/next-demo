@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono&display=swap');
+
+:root {
+  --font-sans: 'Geist', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --color-primary: #1e40af;
+  --color-bg: #21252A;
+  --color-text: #111827;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}

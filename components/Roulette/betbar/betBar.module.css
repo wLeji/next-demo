@@ -1,0 +1,80 @@
+.container {
+  width: 100%;
+  background-color: #1A1E23;
+  border-radius: 1rem;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  border: 2px solid #16181D;
+}
+
+.entryside {
+  flex: 1;
+  text-align: left;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: transparent;
+  border: 0px;
+  color: #BABDBE;
+}
+
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.input:focus {
+  outline: none;
+  border-bottom: 0px;
+}
+
+.buttonside {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  animation: slideInRight 0.6s ease-out both;
+}
+
+.button {
+  background-color: #505450;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  display: flex;
+  max-width: 100%;
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+  background-color: #404540;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}

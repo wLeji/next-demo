@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//
+// === UTILISATEURS ===
+//
+model User {
+  id       String @id @default(cuid())
+  email    String @unique
+  username String @unique
+  password String
+  tokens   Int    @default(100)
+
+  bets     Bet[]
+  wonSpins RouletteSession[] @relation("SpinWinners")
+
+  battleBets    BattleBet[] @relation("BattleParticipants")
+  wonBattleBets BattleBet[] @relation("BattleBetWinner")
+
+  createdAt DateTime @default(now())
+}
+
+//
+// === PARIS ===
+//
+model Bet {
+  id     String @id @default(cuid()) // ID du pari
+  user   User   @relation(fields: [userId], references: [id])
+  userId String // Référence vers le joueur
+
+  session   RouletteSession @relation(fields: [sessionId], references: [id])
+  sessionId String // Référence vers la session de roulette
+
+  choice RouletteColor // Couleur choisie : RED, BLACK ou GREEN
+  amount Int // Nombre de jetons misés
+
+  createdAt DateTime @default(now()) // Date du pari
+}
+
+//
+// === SESSIONS DE ROULETTE COMMUNES ===
+//
+model RouletteSession {
+  id        String   @id @default(cuid()) // ID de la session
+  startTime DateTime // Heure de début (début du compte à rebours)
+  endTime   DateTime // Heure de fin (tirage du résultat)
+
+  result     Int? // Résultat du tirage (0-36) ou null si pas encore tiré
+  isComplete Boolean @default(false) // Session terminée ou pas
+
+  bets    Bet[] // Tous les paris liés à cette session
+  winners User[] @relation("SpinWinners") // relation many-to-many implicite Les gagnants de cette session
+
+  createdAt DateTime @default(now()) // Date de création de la session
+}
+
+//
+// === ENUM POUR LES COULEURS DE LA ROULETTE ===
+//
+enum RouletteColor {
+  RED
+  BLACK
+  GREEN
+}
+
+model BattleBet {
+  id        String   @id @default(cuid())
+  amount    Float
+  status    BattleBetStatus @default(WAITING)
+  createdAt DateTime @default(now())
+
+  participants User[]  @relation("BattleParticipants")
+  winner       User?   @relation("BattleBetWinner", fields: [winnerId], references: [id])
+  winnerId     String?
+
+  participantEntries Participant[] // <== ceci complète la relation inverse
+}
+
+model Participant {
+  id       Int       @id @default(autoincrement())
+  username String
+  battleId String
+  battle   BattleBet @relation(fields: [battleId], references: [id])
+}
+
+enum BattleBetStatus {
+  WAITING
+  ONGOING
+  COMPLETE
+}
