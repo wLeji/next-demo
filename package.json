@@ -10,6 +10,7 @@
     "seed": "ts-node prisma/seed.ts",
     "prisma": "npx prisma studio",
     "spin": "npx ts-node scripts/spinner.ts",
+    "battle": "npx ts-node scripts/battleLoop.ts",
     "migrate": "npx prisma migrate dev"
   },
   "dependencies": {

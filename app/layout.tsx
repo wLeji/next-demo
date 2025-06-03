@@ -34,7 +34,6 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const user = await getUser();
 
   return (
     <html lang="fr">

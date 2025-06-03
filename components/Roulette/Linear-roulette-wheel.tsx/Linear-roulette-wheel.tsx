@@ -78,7 +78,6 @@ export default function LinearRouletteWheel({
           onRollEnd?.()  
         }, 10000)
       } else {
-        // 🟡 Première arrivée ou refresh → positionner sans animation
         setXPos(target)
         setResult(resultNumber)
         setHasAlreadySpun(true)

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation' // ← manquant dans ton code
+import { useRouter } from 'next/navigation'
 import { placeBet } from '@/app/actions/placeBet'
 import { RouletteColor, User, Bet } from '@prisma/client'
 import { useAuth } from '@/contexts/AuthContext'
@@ -17,7 +17,7 @@ interface BetFormProps {
 
 export function BetForm({ sessionId, bets }: BetFormProps) {
   const { user } = useAuth()
-  const router = useRouter() // ← à ajouter impérativement
+  const router = useRouter()
 
   const [amount, setAmount] = useState<number>(0)
   const [color, setColor] = useState<RouletteColor>('RED')

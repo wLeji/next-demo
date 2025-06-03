@@ -69,17 +69,25 @@ enum RouletteColor {
   GREEN
 }
 
+enum BattleBetStatus {
+  WAITING
+  IN_PROGRESS
+  DONE
+  FINISHED
+}
+
 model BattleBet {
   id        String   @id @default(cuid())
   amount    Float
   status    BattleBetStatus @default(WAITING)
   createdAt DateTime @default(now())
+  progressionStep Int       @default(0)
 
   participants User[]  @relation("BattleParticipants")
   winner       User?   @relation("BattleBetWinner", fields: [winnerId], references: [id])
   winnerId     String?
 
-  participantEntries Participant[] // <== ceci complète la relation inverse
+  participantEntries Participant[]
 }
 
 model Participant {
@@ -87,10 +95,4 @@ model Participant {
   username String
   battleId String
   battle   BattleBet @relation(fields: [battleId], references: [id])
-}
-
-enum BattleBetStatus {
-  WAITING
-  ONGOING
-  COMPLETE
 }
