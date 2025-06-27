@@ -1,9 +1,9 @@
+variables:
+  IMAGE_NAME: registry.gitlab.com/jules_sbts/next-demo
+
 stages:
   - build
   - publish
-
-variables:
-  IMAGE_NAME: $CI_REGISTRY_IMAGE
 
 build-job:
   stage: build
@@ -12,7 +12,8 @@ build-job:
     - docker:24.0.5-dind
   script:
     - docker build -t $IMAGE_NAME:$CI_COMMIT_SHORT_SHA .
-    - docker tag $IMAGE_NAME:$CI_COMMIT_SHORT_SHA $IMAGE_NAME:latest
+  only:
+    - main
 
 publish-job:
   stage: publish
@@ -21,6 +22,11 @@ publish-job:
     - docker:24.0.5-dind
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+    - docker pull $IMAGE_NAME:$CI_COMMIT_SHORT_SHA || echo "Image not found, skipping pull"
+    - docker tag $IMAGE_NAME:$CI_COMMIT_SHORT_SHA $IMAGE_NAME:latest
     - docker push $IMAGE_NAME:$CI_COMMIT_SHORT_SHA
     - docker push $IMAGE_NAME:latest
-  needs: ["build-job"]
+  dependencies:
+    - build-job
+  only:
+    - main
