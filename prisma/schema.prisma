@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-1.1.x"]
 }
 
 datasource db {
@@ -7,9 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//
-// === UTILISATEURS ===
-//
 model User {
   id       String @id @default(cuid())
   email    String @unique
@@ -26,43 +24,34 @@ model User {
   createdAt DateTime @default(now())
 }
 
-//
-// === PARIS ===
-//
 model Bet {
-  id     String @id @default(cuid()) // ID du pari
+  id     String @id @default(cuid())
   user   User   @relation(fields: [userId], references: [id])
-  userId String // Référence vers le joueur
+  userId String
 
   session   RouletteSession @relation(fields: [sessionId], references: [id])
-  sessionId String // Référence vers la session de roulette
+  sessionId String
 
-  choice RouletteColor // Couleur choisie : RED, BLACK ou GREEN
-  amount Int // Nombre de jetons misés
+  choice RouletteColor
+  amount Int
 
-  createdAt DateTime @default(now()) // Date du pari
+  createdAt DateTime @default(now())
 }
 
-//
-// === SESSIONS DE ROULETTE COMMUNES ===
-//
 model RouletteSession {
-  id        String   @id @default(cuid()) // ID de la session
-  startTime DateTime // Heure de début (début du compte à rebours)
-  endTime   DateTime // Heure de fin (tirage du résultat)
+  id        String   @id @default(cuid())
+  startTime DateTime
+  endTime   DateTime
 
-  result     Int? // Résultat du tirage (0-36) ou null si pas encore tiré
-  isComplete Boolean @default(false) // Session terminée ou pas
+  result     Int?
+  isComplete Boolean @default(false)
 
-  bets    Bet[] // Tous les paris liés à cette session
-  winners User[] @relation("SpinWinners") // relation many-to-many implicite Les gagnants de cette session
+  bets    Bet[]
+  winners User[] @relation("SpinWinners")
 
-  createdAt DateTime @default(now()) // Date de création de la session
+  createdAt DateTime @default(now())
 }
 
-//
-// === ENUM POUR LES COULEURS DE LA ROULETTE ===
-//
 enum RouletteColor {
   RED
   BLACK

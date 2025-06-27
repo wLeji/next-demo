@@ -52,7 +52,6 @@ export default function LinearRouletteWheel({
     return -(targetIndex * SLOT_SIZE - offset + ADJUSTMENT)
   }
 
-  // 🔁 Gère l'arrivée d'un nouveau résultat
   useEffect(() => {
     if (resultNumber == null || offset === 0) return
 

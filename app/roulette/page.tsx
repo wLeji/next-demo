@@ -4,6 +4,8 @@ import { BetForm } from '@/components/Roulette/betform/BetForm'
 import RouletteWheel from '@/components/Roulette/Linear-roulette-wheel.tsx/Linear-roulette-wheel'
 import Styles from './page.module.css'
 
+export const dynamic = 'force-dynamic';
+
 export default async function RoulettePage() {
   // Session en cours (encore ouverte)
   const currentSession = await prisma.rouletteSession.findFirst({

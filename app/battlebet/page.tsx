@@ -3,6 +3,8 @@ import BattleBetList from '@/components/BattleBet/battlebetlist/BattleBetList'
 import { prisma } from '@/lib/prisma'
 import { BattleBetStatus } from '@prisma/client'
 
+export const dynamic = 'force-dynamic';
+
 export default async function BattleBetPage() {
   const battles = await prisma.battleBet.findMany({
     

@@ -4,14 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
+    "buildu": "next build",
+    "startu": "next start",
     "lint": "next lint",
     "seed": "ts-node prisma/seed.ts",
     "prisma": "npx prisma studio",
     "spin": "npx ts-node scripts/spinner.ts",
     "battle": "npx ts-node scripts/battleLoop.ts",
-    "migrate": "npx prisma migrate dev"
+    "migrate": "npx prisma migrate dev",
+    "build:scheduler": "tsc scripts/spinner.ts --outDir dist",
+    "build": "next build && tsc --project tsconfig.scheduler.json",
+    "start": "concurrently \"next start\" \"node dist/scripts/spinner.js\" \"node dist/scripts/battleLoop.js\""
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.9.1",
@@ -23,6 +26,7 @@
     "bcrypt": "^6.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "concurrently": "^9.2.0",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.509.0",
     "motion": "^12.12.1",
@@ -36,6 +40,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^20.17.48",
     "@types/react": "^19",
@@ -48,5 +53,6 @@
     "tsconfig-paths": "^4.2.0",
     "tw-animate-css": "^1.2.9",
     "typescript": "^5.8.3"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

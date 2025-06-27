@@ -2,21 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AuthProvider } from '@/contexts/AuthContext'
 import { UserProvider } from '@/contexts/UserContext'
-import { cookies } from 'next/headers'
-import { prisma } from "@/lib/prisma";
 import Header from "@/components/header/header";
 import "@/app/styles/globals.css";
-
-
-export async function getUser() {
-  const cookieStore = await cookies();
-  const userId = cookieStore.get('userId')?.value;
-
-  if (userId) {
-    return await prisma.user.findUnique({ where: { id: userId } });
-  }
-  return null;
-}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
