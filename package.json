@@ -13,7 +13,7 @@
     "battle": "npx ts-node scripts/battleLoop.ts",
     "migrate": "npx prisma migrate dev",
     "build:scheduler": "tsc scripts/spinner.ts --outDir dist",
-    "build": "next build && tsc --project tsconfig.scheduler.json",
+    "build": "next build",
     "start": "concurrently \"next start\" \"node dist/scripts/spinner.js\" \"node dist/scripts/battleLoop.js\""
   },
   "dependencies": {
