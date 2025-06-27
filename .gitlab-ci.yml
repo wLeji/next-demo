@@ -11,7 +11,7 @@ build-job:
   services:
     - docker:24.0.5-dind
   script:
-    - docker buildx build --platform linux/amd64 -t $IMAGE_NAME:$CI_COMMIT_SHORT_SHA --push .
+    - docker buildx build --platform linux/amd64 -t $IMAGE_NAME:$CI_COMMIT_SHORT_SHA .
     - docker save $IMAGE_NAME:$CI_COMMIT_SHORT_SHA -o image.tar
   artifacts:
     paths:
