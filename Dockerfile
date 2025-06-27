@@ -15,6 +15,7 @@ COPY . .
 
 # Prisma + Compilation
 RUN npx prisma generate --schema=./prisma/schema.prisma
+RUN npx prisma migrate deploy
 RUN npm run build
 
 # Étape 2 : Runner
