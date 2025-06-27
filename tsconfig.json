@@ -34,8 +34,10 @@
     ]
   },
   "include": [
-    "scripts",
-    ".next/types/**/*.ts"
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "scripts/**/*"
   ],
   "exclude": [
     "node_modules"
